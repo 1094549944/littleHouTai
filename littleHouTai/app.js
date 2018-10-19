@@ -8,12 +8,11 @@ const logger = require('koa-logger')
 const cors = require('koa2-cors')
 const { connect, initSchemas } = require('./database/init')
 const classic = require('./routes/classic')
+const like = require('./routes/like')
 onerror(app)
 
 // middlewares
-app.use(bodyparser({
-  enableTypes: ['json', 'form', 'text']
-}))
+app.use(bodyparser())
 app.use(json())
 app.use(logger())
 //koa 解决跨域问题
@@ -37,6 +36,7 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(classic.routes(), classic.allowedMethods())
+app.use(like.routes(), like.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   //console.error('server error', err, ctx)

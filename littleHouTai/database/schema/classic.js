@@ -24,7 +24,8 @@ const classicList = new Schema({
   pubdate: { type: String },
   title: { type: String },
   type: { type: Number },
-  image:{type:String}
+  image: { type: String },
+  year: { type: String }
 })
 
 mongoose.model('classic', classicList)
