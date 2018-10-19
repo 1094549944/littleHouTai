@@ -14,13 +14,14 @@ router.get('/latest', async (ctx) => {
   let id = date.getMonth() + 1
   await latest.findOne({ id: id }).exec().then(async (result) => {
     ctx.body = {
-      code: 200,
+      statusCode: 200,
       data: result,
       msg: '查找成功'
     }
   }).catch((error) => {
     ctx.body = {
-      code: 500,
+      statusCode: 500,
+      error_code: 500,
       data: error,
       msg: '查找失败'
     }
