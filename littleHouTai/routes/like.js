@@ -16,7 +16,7 @@ router.post('/', async (ctx) => {
     ctx.body = {
       statusCode: 200,
       data: result,
-      msg: '修改成功'
+      msg: '修改成功，您已经添加了点赞'
     }
   }).catch((error) => {
     ctx.body = {
@@ -40,7 +40,7 @@ router.post('/cancel', async (ctx) => {
     ctx.body = {
       statusCode: 200,
       data: result,
-      msg: '修改成功'
+      msg: '修改成功,已经取消了点赞'
     }
   }).catch((error) => {
     ctx.body = {
