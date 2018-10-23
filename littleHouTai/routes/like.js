@@ -8,10 +8,19 @@ router.prefix('/like')
 router.post('/', async (ctx) => {
   const list = mongoose.model('classic')
   let params = {
-    id: ctx.request.body.id,
+    _id: ctx.request.body._id,
     type: ctx.request.body.type
   }
-  await list.update(params, { $set: { 'like_status': '1' } }).exec().then(async (result) => {
+  let updateParams = {
+    "$set": {
+      'like_status': 1,
+
+    },
+    "$inc": {
+      'fav_nums': +1
+    }
+  }
+  await list.update(params, updateParams).exec().then(async (result) => {
 
     ctx.body = {
       statusCode: 200,
@@ -32,10 +41,19 @@ router.post('/', async (ctx) => {
 router.post('/cancel', async (ctx) => {
   const list = mongoose.model('classic')
   let params = {
-    id: ctx.request.body.id,
+    _id: ctx.request.body._id,
     type: ctx.request.body.type
   }
-  await list.update(params, { $set: { 'like_status': '0' } }).exec().then(async (result) => {
+  let updateParams = {
+    "$set": {
+      'like_status': 0,
+
+    },
+    "$inc": {
+      'fav_nums': -1
+    }
+  }
+  await list.update(params, updateParams).exec().then(async (result) => {
 
     ctx.body = {
       statusCode: 200,
